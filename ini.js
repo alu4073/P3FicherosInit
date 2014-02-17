@@ -1,31 +1,31 @@
-"use ______"; // Use ECMAScript 5 strict mode in browsers that support it
+"use strict"; // Use ECMAScript 5 strict mode in browsers that support it
 
-$(document)._____(function() {
-   $("#fileinput").______(calculate);
+$(document).ready(function() {
+   $("#fileinput").change(calculate);
 });
 
 function calculate(evt) {
   var f = evt.target.files[0]; 
 
   if (f) {
-    var r = new __________();
+    var r = new FileReader();
     r.onload = function(e) { 
-      var contents = e.target.______;
+      var contents = e.target.result;
       
       var tokens = lexer(contents);
       var pretty = tokensToString(tokens);
       
       out.className = 'unhidden';
-      initialinput._________ = contents;
-      finaloutput._________ = pretty;
+      entrada.value = contents;
+      salida.value = pretty;
     }
-    r.__________(f); // Leer como texto
+    r.readAsText(f); // Leer como texto
   } else { 
     alert("Failed to load file");
   }
 }
 
-var temp = '<li> <span class = "<%= ______ %>"> <%= _ %> </span>\n';
+var temp = '<li> <span class = "<%= t.type %>"> <%= s %> </span>\n'; //Devolvemos tipo de token y contenido
 
 function tokensToString(tokens) {
    var r = '';
