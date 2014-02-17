@@ -39,34 +39,34 @@ function tokensToString(tokens) {
 }
 
 function lexer(input) {
-  var blanks         = /^___/;
-  var iniheader      = /^________________/;
-  var comments       = /^________/;
-  var nameEqualValue = /^________________________/;
-  var any            = /^_______/;
+  var blanks         = /^\s+/;
+  var iniheader      = /^\[([^\]\r\n]+)\]/;
+  var comments       = /^[;#](.*)/;
+  var nameEqualValue = /^([^=;\r\n]+)=([^;\r\n]*)/;
+  var any            = /^(.|\n)+/;
 
   var out = [];
   var m = null;
 
-  while (input != '') {
-    if (m = blanks.____(input)) {
-      input = input.substr(m.index+___________);
-      out.push({ type : ________, match: _ });
+ while (input != '') {
+    if (m = blanks.exec(input)) {
+      input = input.substr(m.index+m[0].length);
+      out.push({ type : 'blanks', match: m });
     }
     else if (m = iniheader.exec(input)) {
-      input = input.substr(___________________);
-      _______________________________________ // avanzemos en input
+      input = input.substr(m.index+m[0].length);
+      out.push({ type: 'header', match: m });
     }
     else if (m = comments.exec(input)) {
-      input = input.substr(___________________);
-      _________________________________________
+      input = input.substr(m.index+m[0].length);
+      out.push({ type: 'comments', match: m });
     }
     else if (m = nameEqualValue.exec(input)) {
-      input = input.substr(___________________);
-      _______________________________________________
+      input = input.substr(m.index+m[0].length);
+      out.push({ type: 'nameEqualValue', match: m });
     }
     else if (m = any.exec(input)) {
-      _______________________________________
+      out.push({ type: 'error', match: m });
       input = '';
     }
     else {
