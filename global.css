@@ -23,20 +23,19 @@ tr:nth-child(even)    { background-color:#00FF66; }
 input        { text-align: right;  border: none;       }     /* Align input to the right  */
 textarea     { border: outset; border-color: white;       }                        
 table        { border: inset; border-color: white; }
-.hidden      { display: ____; }
-.unhidden    { display: _____; }
+.hidden      { display: none; }
+.unhidden    { display: block; }
 table.center { margin-left:auto; margin-right:auto; }
 #result      { border-color: red; }
 tr.error       { background-color: red; }
 pre.output   { background-color: white; }
-span.repeated { background-color: red }
-span.header { ________________: ____ }
-span.comments { ________________: ______ }
-span.blanks { ________________: _____ }
-span.nameEqualValue { ________________: ____ }
-span.error { ________________: ___ }
+span.repeated { background-color: #FF3333  }
+span.header { background-color: #3399FF }
+span.comments { background-color: #CCFF66 }
+span.blanks { background-color: #66FF66 }
+span.nameEqualValue { background-color: #99FFFF }
+span.error { background-color: #FF3333 }
 
 body
 {
- background-color:#b0c4de;  /* blue */
-}
+ background-color:#3366FF;  /* blue */
