@@ -16,8 +16,8 @@ function calculate(evt) {
       var pretty = tokensToString(tokens);
       
       out.className = 'unhidden';
-      entrada.value = contents;
-      salida.value = pretty;
+      entrada.innerHTML = contents;
+      salida.innerHTML = pretty;
     }
     r.readAsText(f); // Leer como texto
   } else { 
