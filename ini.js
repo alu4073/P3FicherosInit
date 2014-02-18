@@ -54,14 +54,12 @@ function calculate(f) {
   }
 }
 
-var temp = '<li> <span class = "<%= t.type %>"> <%= s %> </span>\n'; //Devolvemos tipo de token y contenido
-
 function tokensToString(tokens) {
    var r = '';
    for(var i in tokens) {
      var t = tokens[i];
      var s = JSON.stringify(t, undefined, 2);
-     s = _.template(temp, {t: t, s: s});
+     s = _.template(underscoreTemplate.innerHTML, {t: t, s: s});
      r += s;
    }
    return '<ol>\n'+r+'</ol>';
