@@ -19,7 +19,7 @@ th, td        { vertical-align: top; text-align: left; }
 /* #finaltable table, td { border:1px solid white; } */
 #finaltable:hover td { background-color: blue; } 
 tr:nth-child(odd)    { background-color:#eee; }
-tr:nth-child(even)    { background-color:#00FF66; }
+tr:nth-child(even)    { background-color:white; }
 input        { text-align: right;  border: none;       }     /* Align input to the right  */
 textarea     { border: outset; border-color: white;       }                        
 table        { border: inset; border-color: white; }
@@ -40,3 +40,14 @@ body
 {
  background-color:#3366FF;  /* blue */
 }
+
+#drop_zone{
+	border: outset;
+	border-color: white;
+	width:35%;
+    background-color: #CCCCCC;
+    color: black;
+    padding: 40px 50px;
+    text-align: center;
+}
+
