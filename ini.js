@@ -4,6 +4,7 @@ $(document).ready(function() {
    $("#fileinput").change(botonPulsado);
    var dropZone = document.getElementById('drop_zone');
    dropZone.addEventListener('dragover', handleDragOver, false);
+   dropZone.addEventListener('dragleave', handleDragLeave, false);
    dropZone.addEventListener('drop', handleFileSelect, false);
 });
 
@@ -20,6 +21,13 @@ $(document).ready(function() {
     evt.preventDefault();
     evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.  
 	evt.target.style.background = "#0099CC"; //cambia de color cuando estas encima
+  }
+
+  function handleDragLeave(evt) {
+    evt.stopPropagation();
+    evt.preventDefault();
+    evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.  
+	evt.target.style.background = "#CCCCCC"; //cambia de color cuando estas encima
   }
 
 function botonPulsado(evt) {
