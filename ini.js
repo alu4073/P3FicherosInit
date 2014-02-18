@@ -1,12 +1,33 @@
 "use strict"; // Use ECMAScript 5 strict mode in browsers that support it
 
 $(document).ready(function() {
-   $("#fileinput").change(calculate);
+   $("#fileinput").change(botonPulsado);
+   var dropZone = document.getElementById('drop_zone');
+   dropZone.addEventListener('dragover', handleDragOver, false);
+   dropZone.addEventListener('drop', handleFileSelect, false);
 });
 
-function calculate(evt) {
-  var f = evt.target.files[0]; 
+ function handleFileSelect(evt) {
+    evt.stopPropagation();
+    evt.preventDefault();
+    var files = evt.dataTransfer.files; // FileList object.
+    calculate(files[0]);
+	evt.target.style.background = "#CCCCCC";
+  }
 
+  function handleDragOver(evt) {
+    evt.stopPropagation();
+    evt.preventDefault();
+    evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.  
+	evt.target.style.background = "#0099CC"; //cambia de color cuando estas encima
+  }
+
+function botonPulsado(evt) {
+  var f = evt.target.files[0]; 
+  calculate(f);
+}
+
+function calculate(f) {
   if (f) {
     var r = new FileReader();
     r.onload = function(e) { 
