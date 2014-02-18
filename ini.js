@@ -2,40 +2,49 @@
 
 $(document).ready(function() {
    $("#fileinput").change(botonPulsado);
+   $("#botonRefrescar1").click(resetPagina);
+   $("#botonRefrescar2").click(resetPagina);
    var dropZone = document.getElementById('drop_zone');
    dropZone.addEventListener('dragover', handleDragOver, false);
    dropZone.addEventListener('dragleave', handleDragLeave, false);
    dropZone.addEventListener('drop', handleFileSelect, false);
+   
 });
 
- function handleFileSelect(evt) {
-    evt.stopPropagation();
-    evt.preventDefault();
-    var files = evt.dataTransfer.files; // FileList object.
-    calculate(files[0]);
-	evt.target.style.background = "#CCCCCC";
-  }
+function handleFileSelect(evt) {
+   evt.stopPropagation();
+   evt.preventDefault();
+   var files = evt.dataTransfer.files; // FileList object.
+   calculate(files[0]);
+   evt.target.style.background = "#CCCCCC";
+}
 
-  function handleDragOver(evt) {
-    evt.stopPropagation();
-    evt.preventDefault();
-    evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.  
-	evt.target.style.background = "#0099CC"; //cambia de color cuando estas encima
-  }
+function handleDragOver(evt) {
+   evt.stopPropagation();
+   evt.preventDefault();
+   evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.  
+   evt.target.style.background = "#0099CC"; //cambia de color cuando estas encima
+}
 
-  function handleDragLeave(evt) {
-    evt.stopPropagation();
-    evt.preventDefault();
-    evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.  
-	evt.target.style.background = "#CCCCCC"; //cambia de color cuando estas encima
-  }
+function handleDragLeave(evt) {
+  evt.stopPropagation();
+  evt.preventDefault();
+  evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.  
+  evt.target.style.background = "#CCCCCC"; //cambia de color cuando estas encima
+}
 
 function botonPulsado(evt) {
   var f = evt.target.files[0]; 
   calculate(f);
 }
 
+function resetPagina() {
+  localStorage.clear();
+  window.location.reload(true);
+}
+
 function calculate(f) {
+  
   if (f) {
     var r = new FileReader();
     r.onload = function(e) { 
@@ -45,9 +54,18 @@ function calculate(f) {
       var pretty = tokensToString(tokens);
       
       out.className = 'unhidden';
+      drop_zone.className = 'hidden';
+      fileinput.className = 'hidden';
+      botonRefrescar1.className = 'unhiddenButton';
+      botonRefrescar2.className = 'unhiddenButton';
       entrada.innerHTML = contents;
       salida.innerHTML = pretty;
+      if (window.localStorage) {
+		localStorage.entrada = contents;
+        localStorage.salida = pretty;
+      }
     }
+    
     r.readAsText(f); // Leer como texto
   } else { 
     alert("Failed to load file");
@@ -59,11 +77,15 @@ function tokensToString(tokens) {
    for(var i in tokens) {
      var t = tokens[i];
      var s = JSON.stringify(t, undefined, 2);
+
+     
      s = _.template(underscoreTemplate.innerHTML, {t: t, s: s});
      r += s;
    }
    return '<ol>\n'+r+'</ol>';
 }
+
+
 
 function lexer(input) {
   var blanks         = /^\s+/;
@@ -103,3 +125,16 @@ function lexer(input) {
   }
   return out;
 }
+
+window.onload = function() {
+  // If the browser supports localStorage and we have some stored data
+  if (window.localStorage && localStorage.entrada && localStorage.salida) {
+    document.getElementById("entrada").innerHTML = localStorage.entrada;
+    document.getElementById("salida").innerHTML = localStorage.salida;
+    document.getElementById("drop_zone").className = 'hidden';
+    document.getElementById("fileinput").className = 'hidden';
+    document.getElementById("out").className = 'unhidden';
+    document.getElementById("botonRefrescar1").className = 'unhiddenButton';
+    document.getElementById("botonRefrescar2").className = 'unhiddenButton';
+  }
+};

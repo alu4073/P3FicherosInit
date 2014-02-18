@@ -2,17 +2,21 @@ html *
 {
    font-size: large; 
    /* The !important ensures that nothing can override what you've set in this style (unless it is also important). */
-   font-family: Arial;
+   font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
 }
 
 .thumb {
     height: 75px;
     border: 1px solid #000;
     margin: 10px 5px 0 0;
-  }
+}
 
-h1            { text-align: center; font-size: x-large; }
-th, td        { vertical-align: top; text-align: left; }   
+
+
+h1            { text-align: center; font-size: 45px; }
+h2            { text-align: center; font-size: large; font-style:italic;}
+td            { vertical-align: top; text-align: left; }   
+th            { vertical-align: top; text-align: center; } 
 /* #finaltable  * { color: white; background-color: black; }   */
 
 /* #finaltable table { border-collapse:collapse; } */
@@ -25,6 +29,7 @@ textarea     { border: outset; border-color: white;       }
 table        { border: inset; border-color: white; }
 .hidden      { display: none; }
 .unhidden    { display: block; }
+.unhiddenButton { text-align:center; margin-left:auto; margin-right:auto;  }
 table.center { margin-left:auto; margin-right:auto; }
 #result      { border-color: red; }
 tr.error       { background-color: red; }
@@ -49,5 +54,7 @@ body
     color: black;
     padding: 40px 50px;
     text-align: center;
+    margin-left:auto; 
+    margin-right:auto;
 }
 

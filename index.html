@@ -8,13 +8,16 @@
      <script type="text/javascript" src="lib/jquery.js"></script>
      <script type="text/javascript" src="ini.js"></script>
 	 <script type="text/html" id='underscoreTemplate'>
-		<li> <span class = "<%= t.type %>"> <%= s %> </span>
+		<li> <span class="<%= t.type %>"> <%= s %> </span>
      </script>
   </head>
   <body>
-    <h1>INI files</h1>
-    <input type="file" id="fileinput" />
-    <div id="drop_zone">Arrastre los ficheros aquí</div>
+    <h1>Analizador de ficheros INI</h1>
+    <div style="text-align:center">   
+       <input type="file" id="fileinput" />
+       <div id="drop_zone">Arrastre los ficheros aquí</div> 
+       <button id="botonRefrescar1" type="button" class="hidden"> Analizar otro fichero </button>
+    </div>  
     <output id="list"></output>
     <div id="out" class="hidden">
     <table align="center">
@@ -30,5 +33,11 @@
       </tr>
     </table>
     </div>
+    <br>
+    <div style="text-align:center">  
+        <button id="botonRefrescar2" type="button" class="hidden"> Analizar otro fichero </button>
+    </div>  
+    <br>
+    <h2>Autores: Sara Martín Molina y Adrián González Martín<h2>
   </body>
 </html>
