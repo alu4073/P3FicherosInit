@@ -5,11 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="mocha.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
   </head>
   <body>
     <div id="mocha"></div>
+
+    <script src="chai.js"></script>
     <script src="mocha.js"></script>
-    <script>mocha.setup('bdd')</script>
+    <script src="../ini.js"></script>
+    <script>mocha.setup('tdd')</script>
     <script src="tests.js"></script>
     <script>
       mocha.run();
