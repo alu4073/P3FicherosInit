@@ -1,7 +1,7 @@
 <html>
   <head>
      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-     <title>INI files</title>
+     <title>Analizador de ficheros INI</title>
      <link href="global.css" rel="stylesheet" type="text/css">
 
      <script type="text/javascript" src="lib/underscore.js"></script>
@@ -11,16 +11,16 @@
 		<li> <span class="<%= t.type %>"> <%= s %> </span>
      </script>
   </head>
-  <body>
-    <h1>Analizador de ficheros INI</h1>
+  <body id="Cuerpo">
+    <h1>Analizador de ficheros INI</h1><br>
     <div style="text-align:center">   
        <input type="file" id="fileinput" />
-       <div id="drop_zone">Arrastre los ficheros aquí</div> 
+       <div id="drop_zone">Arrastre el fichero aquí</div> 
        <button id="botonRefrescar1" type="button" class="hidden"> Analizar otro fichero </button>
     </div>  
     <output id="list"></output>
     <div id="out" class="hidden">
-    <table align="center">
+    <table id="finalTable" align="center">
 	  <br>
       <tr><th>Original</th><th>Tokens</th></tr>
       <tr>
@@ -37,7 +37,7 @@
     <div style="text-align:center">  
         <button id="botonRefrescar2" type="button" class="hidden"> Analizar otro fichero </button>
     </div>  
-    <br>
-    <h2>Autores: Sara Martín Molina y Adrián González Martín<h2>
+    <br><br>
+    <h2 id="nombresAutores" class='hidden'>Autores: Sara Martín Molina y Adrián González Martín<h2>
   </body>
 </html>

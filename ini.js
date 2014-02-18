@@ -58,14 +58,15 @@ function calculate(f) {
       fileinput.className = 'hidden';
       botonRefrescar1.className = 'unhiddenButton';
       botonRefrescar2.className = 'unhiddenButton';
-      entrada.innerHTML = contents;
+      nombresAutores.className = 'unhidden';
+	  Cuerpo.className = 'fondoFicheroAbierto';
+      entrada.innerHTML = '\n' + contents;
       salida.innerHTML = pretty;
       if (window.localStorage) {
 		localStorage.entrada = contents;
         localStorage.salida = pretty;
       }
-    }
-    
+    }    
     r.readAsText(f); // Leer como texto
   } else { 
     alert("Failed to load file");
@@ -76,13 +77,11 @@ function tokensToString(tokens) {
    var r = '';
    for(var i in tokens) {
      var t = tokens[i];
-     var s = JSON.stringify(t, undefined, 2);
-
-     
+     var s = JSON.stringify(t, undefined, 2);    
      s = _.template(underscoreTemplate.innerHTML, {t: t, s: s});
      r += s;
    }
-   return '<ol>\n'+r+'</ol>';
+   return '<ol>'+r+'</ol>';
 }
 
 
@@ -127,12 +126,13 @@ function lexer(input) {
 }
 
 window.onload = function() {
-  // If the browser supports localStorage and we have some stored data
+   //Se comprueba si el navegador soporta localStorage y hay algún dato almacenado 
   if (window.localStorage && localStorage.entrada && localStorage.salida) {
     document.getElementById("entrada").innerHTML = localStorage.entrada;
     document.getElementById("salida").innerHTML = localStorage.salida;
     document.getElementById("drop_zone").className = 'hidden';
     document.getElementById("fileinput").className = 'hidden';
+    document.getElementById("Cuerpo").className = 'fondoFicheroAbierto';
     document.getElementById("out").className = 'unhidden';
     document.getElementById("botonRefrescar1").className = 'unhiddenButton';
     document.getElementById("botonRefrescar2").className = 'unhiddenButton';
