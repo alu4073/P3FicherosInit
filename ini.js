@@ -9,7 +9,6 @@ $(document).ready(function() {
    dropZone.addEventListener('dragover', handleDragOver, false);
    dropZone.addEventListener('dragleave', handleDragLeave, false);
    dropZone.addEventListener('drop', handleFileSelect, false);
-   
 });
 
 function handleFileSelect(evt) {
@@ -49,15 +48,12 @@ function resetPagina() {
 }
 
 function calculate(f) {
-  
   if (f) {
     var r = new FileReader();
     r.onload = function(e) { 
       var contents = e.target.result;
-      
       var tokens = lexer(contents);
       var pretty = tokensToString(tokens);
-      
       out.className = 'unhidden';
       drop_zone.className = 'hidden';
       fileinput.className = 'hidden';
@@ -74,7 +70,7 @@ function calculate(f) {
     }    
     r.readAsText(f); // Leer como texto
   } else { 
-    alert("Failed to load file");
+    alert("Fallo al leer el fichero");
   }
 }
 
@@ -89,13 +85,10 @@ function tokensToString(tokens) {
    return '<ol>'+r+'</ol>';
 }
 
-
-
 function lexer(input) {
   var blanks         = /^\s+/;
   var iniheader      = /^\[([^\]\r\n]+)\]/;
   var comments       = /^[;#](.*)/;
-  //var nameEqualValue = /^([^=;\r\n]+)=([^;\r\n]*)/;
   var nameEqualValue = /^([^=;#\r\n]+)=((?:[^;#\r\n]*\\\n)*[^;#\r\n]*)/;
   var any            = /^(.|\n)+/;
 
@@ -126,7 +119,7 @@ function lexer(input) {
       input = '';
     }
     else {
-      alert("Fatal Error!"+substr(input,0,20));
+      alert("Error Fatal!"+substr(input,0,20));
       input = '';
     }
   }
