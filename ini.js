@@ -90,7 +90,8 @@ function lexer(input) {
   var blanks         = /^\s+/;
   var iniheader      = /^\[([^\]\r\n]+)\]/;
   var comments       = /^[;#](.*)/;
-  var nameEqualValue = /^([^=;\r\n]+)=([^;\r\n]*)/;
+  //var nameEqualValue = /^([^=;\r\n]+)=([^;\r\n]*)/;
+  var nameEqualValue = /^([^=;#\r\n]+)=((?:[^;#\r\n]*\\\n)*[^;#\r\n]*)/;
   var any            = /^(.|\n)+/;
 
   var out = [];
@@ -111,6 +112,8 @@ function lexer(input) {
     }
     else if (m = nameEqualValue.exec(input)) {
       input = input.substr(m.index+m[0].length);
+      m[0] = m[0].replace(/\\\n/,' ');
+      m[2] = m[2].replace(/\\\n/,' ');
       out.push({ type: 'nameEqualValue', match: m });
     }
     else if (m = any.exec(input)) {
@@ -126,7 +129,7 @@ function lexer(input) {
 }
 
 window.onload = function() {
-   //Se comprueba si el navegador soporta localStorage y hay algún dato almacenado 
+  // If the browser supports localStorage and we have some stored data
   if (window.localStorage && localStorage.entrada && localStorage.salida) {
     document.getElementById("entrada").innerHTML = localStorage.entrada;
     document.getElementById("salida").innerHTML = localStorage.salida;
