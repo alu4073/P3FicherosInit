@@ -4,6 +4,7 @@ $(document).ready(function() {
    $("#fileinput").change(botonPulsado);
    $("#botonRefrescar1").click(resetPagina);
    $("#botonRefrescar2").click(resetPagina);
+   $("#botonTest").click(abrirTest);
    var dropZone = document.getElementById('drop_zone');
    dropZone.addEventListener('dragover', handleDragOver, false);
    dropZone.addEventListener('dragleave', handleDragLeave, false);
@@ -36,6 +37,10 @@ function handleDragLeave(evt) {
 function botonPulsado(evt) {
   var f = evt.target.files[0]; 
   calculate(f);
+}
+
+function abrirTest(evt) {
+   document.location.href='./test/index.html';
 }
 
 function resetPagina() {
